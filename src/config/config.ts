@@ -8,7 +8,7 @@ export const ENVM: string = <string | undefined>process.env.ENVM || "dev";
 
 //DATABASE
 let urlDB: string;
-process.env.ENVM === "dev"
+ENVM === "dev"
   ? (urlDB = "mongodb://localhost:27017/shelteredbayou")
   : (urlDB = <string>process.env.MONGO_URI);
 export const URLDB: string = urlDB;

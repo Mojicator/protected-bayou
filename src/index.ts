@@ -1,8 +1,16 @@
 import Server from './server/server';
-require('./config/config');
+import Mongodb from './database/mongodb';
+import { PORT, URLDB } from './config/config';
 
-const server = Server.init(process.env.PORT);
+const server = Server.init(PORT);
+
+const database = Mongodb.init(URLDB);
+
+database.mongoSetup((err: any) => {
+    if (err) throw err;
+    console.log('Database online');
+});
 
 server.start(() => {
-    console.log(`Listening port ${process.env.PORT}...`);
+    console.log(`Listening port ${PORT}...`);
 });
